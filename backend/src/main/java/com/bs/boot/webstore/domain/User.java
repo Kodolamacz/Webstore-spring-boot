@@ -33,15 +33,18 @@ public class User {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "user",
-        cascade = CascadeType.ALL,
-        fetch = FetchType.LAZY
-    )
-    private Set<Cart> carts;
+//    @OneToOne(mappedBy = "user",
+//        cascade = CascadeType.ALL,
+//        fetch = FetchType.LAZY
+//    )
+    private Cart cart;
 
 
     @ManyToMany(mappedBy = "users",
             cascade = CascadeType.ALL
+
     )
     private Set<Role> roles;
+
+    private ShoppingHistory shoppingHistory;
 }

@@ -21,7 +21,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String category;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Category category;
     private String unitPrice;
     private int unitsInStock;
     private String description;

@@ -3,32 +3,27 @@ package com.bs.boot.webstore.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Set;
 
 /**
- * Created by Blazej on 24.10.2018.
+ * Created by Blazej on 27.10.2018.
  */
 @Entity
-@Table(name = "carts")
+@Table(name = "shopping_history")
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cart {
+public class ShoppingHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
-    private Set<CartItem> items;
-
-    private BigDecimal totalPrice;
+    private String shopping_details;
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    private User user;
+    private User owner;
 }
