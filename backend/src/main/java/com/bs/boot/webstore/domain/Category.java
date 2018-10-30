@@ -3,6 +3,7 @@ package com.bs.boot.webstore.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,4 +28,14 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
+
+    void addProduct(Product product){
+        if (this.products != null) {
+            this.products.add(product);
+        }
+        else {
+            this.products = new HashSet<>();
+            this.products.add(product);
+        }
+    }
 }
