@@ -1,5 +1,6 @@
 package com.bs.boot.webstore.services;
 
+import com.bs.boot.webstore.domain.Cart;
 import com.bs.boot.webstore.domain.ShoppingHistory;
 import com.bs.boot.webstore.domain.User;
 
@@ -12,6 +13,6 @@ public interface ShoppingHistoryService {
 
     Optional<ShoppingHistory> findById(Long id);
     Optional<ShoppingHistory> findByOwner(User owner);
-    ShoppingHistory save(ShoppingHistory shoppingHistory);
+    ShoppingHistory save(Cart cart);
     void deleteById(Long id);
 }

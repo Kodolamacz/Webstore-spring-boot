@@ -1,5 +1,6 @@
 package com.bs.boot.webstore.domain;
 
+import com.bs.boot.webstore.validators.IMatchingPassword;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@IMatchingPassword
 public class User {
 
     @Id

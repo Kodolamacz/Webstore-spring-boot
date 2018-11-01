@@ -1,5 +1,6 @@
 package com.bs.boot.webstore.services.Impl;
 
+import com.bs.boot.webstore.domain.Cart;
 import com.bs.boot.webstore.domain.Role;
 import com.bs.boot.webstore.domain.User;
 import com.bs.boot.webstore.repository.UserRepository;
@@ -36,6 +37,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> save(User user) {
+
+        if (user.getCart() == null) user.setCart(new Cart());
         return userRepository.save(user);
     }
 

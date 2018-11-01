@@ -28,7 +28,7 @@ public class Cart {
 
     private BigDecimal totalPrice;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId
     private User user;
 }
