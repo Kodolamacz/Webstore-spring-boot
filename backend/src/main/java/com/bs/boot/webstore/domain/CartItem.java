@@ -32,4 +32,10 @@ public class CartItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private Cart cart;
+
+    public BigDecimal calculateItemCost(){
+        product.setUnitsInStock(product.getUnitsInStock() - quantity);
+        totalItemPrice = product.getUnitPrice().multiply(BigDecimal.valueOf(quantity));
+        return totalItemPrice;
+    }
 }

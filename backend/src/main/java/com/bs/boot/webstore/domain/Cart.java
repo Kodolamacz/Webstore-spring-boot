@@ -31,4 +31,10 @@ public class Cart {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId
     private User user;
+
+    public BigDecimal calculateTotalCost(){
+       totalPrice = items.stream().map(item -> item.calculateItemCost()).reduce((currentTotalCost,currentItemCost)
+               -> currentTotalCost.add(currentItemCost)).get();
+       return totalPrice;
+    }
 }

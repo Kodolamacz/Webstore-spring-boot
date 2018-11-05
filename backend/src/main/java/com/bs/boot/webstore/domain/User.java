@@ -39,6 +39,7 @@ public class User {
 //        cascade = CascadeType.ALL,
 //        fetch = FetchType.LAZY
 //    )
+    @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
 
 
@@ -48,5 +49,6 @@ public class User {
     )
     private Set<Role> roles;
 
+    @OneToOne(cascade = CascadeType.ALL)
     private ShoppingHistory shoppingHistory;
 }

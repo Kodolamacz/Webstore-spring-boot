@@ -13,7 +13,7 @@ public interface UserService {
 
     Optional<User> findById(Long id);
     Optional<User> findByUsername(String username);
-    Optional<User> save(User user);
+    User save(User user);
     void deleteById(Long id);
     List<User> findAll();
     List<User> findByRole(Role role);

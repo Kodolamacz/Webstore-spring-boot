@@ -3,6 +3,7 @@ package com.bs.boot.webstore.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by Blazej on 24.10.2018.
@@ -24,7 +25,7 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
-    private String unitPrice;
+    private BigDecimal unitPrice;
     private int unitsInStock;
     private String description;
 

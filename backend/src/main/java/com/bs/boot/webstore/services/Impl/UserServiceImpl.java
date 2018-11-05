@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> save(User user) {
+    public User save(User user) {
 
         if (user.getCart() == null) user.setCart(new Cart());
         return userRepository.save(user);
@@ -55,6 +55,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> findByRole(Role role) {
-        return userRepository.findByRole(role);
+        return userRepository.findByRoles(role);
     }
 }
