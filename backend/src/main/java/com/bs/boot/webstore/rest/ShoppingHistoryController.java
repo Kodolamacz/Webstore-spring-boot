@@ -27,7 +27,7 @@ public class ShoppingHistoryController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/getUserHistory/userId")
+    @GetMapping(value = "/getUserHistory/{userId}")
     public ShoppingHistory getHistory(@PathVariable("userId") Long id){
 
         User owner = userService.findById(id).get();

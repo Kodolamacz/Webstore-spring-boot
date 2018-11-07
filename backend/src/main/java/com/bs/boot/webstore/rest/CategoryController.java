@@ -22,13 +22,13 @@ public class CategoryController {
     }
 
 
-    @GetMapping(value = "/getCategory/{id}")
+    @GetMapping(value = "/getCategoryById/{id}")
     public Category getById(@PathVariable("id") Long id ){
 
         return categoryService.findById(id).get();
     }
 
-    @GetMapping(value = "/getCategory/{name}")
+    @GetMapping(value = "/getCategoryByName/{name}")
     public Category getByName(@PathVariable("name") String name ){
 
         return categoryService.findByName(name).get();
