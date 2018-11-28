@@ -1,11 +1,13 @@
 package com.bs.boot.webstore.services.Impl;
 
 import com.bs.boot.webstore.domain.Category;
+import com.bs.boot.webstore.dto.CategoryDTO;
 import com.bs.boot.webstore.repository.CategoryRepository;
 import com.bs.boot.webstore.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -40,5 +42,10 @@ public class CategoryServiceImpl implements CategoryService{
     public void deleteById(Long id) {
         categoryRepository.deleteById(id);
 
+    }
+
+    @Override
+    public List<CategoryDTO> findAll(){
+        return categoryRepository.getAllCategories();
     }
 }

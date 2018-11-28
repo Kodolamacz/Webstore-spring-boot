@@ -1,6 +1,8 @@
 package com.bs.boot.webstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import lombok.EqualsAndHashCode.Exclude;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -27,9 +29,12 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    @ToString.Exclude
     private Set<Product> products;
 
-    void addProduct(Product product){
+    public void addProduct(Product product){
         if (this.products != null) {
             this.products.add(product);
         }

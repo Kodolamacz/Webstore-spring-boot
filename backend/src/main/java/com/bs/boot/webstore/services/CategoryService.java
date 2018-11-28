@@ -1,7 +1,9 @@
 package com.bs.boot.webstore.services;
 
 import com.bs.boot.webstore.domain.Category;
+import com.bs.boot.webstore.dto.CategoryDTO;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -13,4 +15,6 @@ public interface CategoryService {
     Optional<Category> findByName(String name);
     Category save(Category category);
     void deleteById(Long id);
-}
+    List<CategoryDTO> findAll();
+
+    }
