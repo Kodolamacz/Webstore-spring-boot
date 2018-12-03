@@ -1,3 +1,50 @@
-<p>
-  products works! yep true
-</p>
+<!-- <form  method="post"> -->
+
+<div class="container">
+  <h1>Dodaj produkt</h1>
+  <div class="row">
+    <div class="col-*-*">
+      <div class="row">
+        <div class="col-*-*">
+          <label>Nazwa produktu</label>
+          <input type="text" name="name" [(ngModel)]="product.name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-*-*">
+          <label>Opis</label>
+          <input type="text" name="description" [(ngModel)]="product.description">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-*-*">
+          <label>Cena</label>
+          <input type="number" name="unitPrice" [(ngModel)]="product.unitPrice">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-*-*">
+          <label>Liczba sztuk</label>
+          <input type="number" name="UnitsInStock" [(ngModel)]="product.unitsInStock">
+        </div>
+      </div>
+      <label>Kategoria</label>
+      <!-- <input type="text" name="category" [(ngModel)]="product.category.name"> -->
+
+      <select [(ngModel)]="productCategory">
+        <!-- <option [value]="Brak">Brak</option> -->
+
+        <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
+
+      </select>
+      
+      <!-- <div *ngIf=""> -->
+
+    
+    <label>Zdjęcia</label>
+    <input type="file" name="images" (change)="uploadFile($event)" multiple>
+  </div>
+</div>
+<button type="button" class="btn-success" (click)="addProduct()"> Dodaj </button>
+</div>
+<!-- </form> -->

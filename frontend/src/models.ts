@@ -41,7 +41,7 @@ export class User{
     password: string;
     email: string;
     phoneNo: string;
-    
+
     cart: Cart;
     roles: Role [];
     shoppingHistory: ShoppingHistory;
@@ -64,4 +64,15 @@ export class Address{
     zipCode: string;
     street: string;
     houseNo: string;
+}
+
+export class ProductDTO{
+    id:number;
+    name:string;
+    categoryName:string;
+    unitPrice: number;
+    unitsInStock:number;
+    description: string;
+    imagePaths:string;
+    paths:any[];
 }

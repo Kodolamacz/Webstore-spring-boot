@@ -1,13 +1,13 @@
 package com.bs.boot.webstore.rest;
 
 import com.bs.boot.webstore.domain.Cart;
+import com.bs.boot.webstore.domain.CartItem;
+import com.bs.boot.webstore.domain.Product;
 import com.bs.boot.webstore.services.CartItemService;
 import com.bs.boot.webstore.services.CartService;
+import com.bs.boot.webstore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -22,11 +22,14 @@ public class CartController {
 
 
     private CartItemService cartItemService;
+    private ProductService productService;
     private CartService cartService;
 
+
     @Autowired
-    public CartController(CartItemService cartItemService, CartService cartService) {
+    public CartController(CartItemService cartItemService, ProductService productService, CartService cartService) {
         this.cartItemService = cartItemService;
+        this.productService = productService;
         this.cartService = cartService;
     }
 
@@ -35,4 +38,19 @@ public class CartController {
 
         return cartService.findById(id).get();
     }
+
+    @PostMapping(value = "/createCartItem")
+    public CartItem createCartItem(@RequestBody CartItem newCartItem ){
+
+        return cartItemService.save(newCartItem);
+
+    }
+
+    @GetMapping(value = "/summaryCart/{id}")
+    public Cart summaryCart(@PathVariable("id") Long id){
+        Cart cart = cartService.findById(id).get();
+        cart.calculateTotalCost();
+        return cart;
+    }
+
 }

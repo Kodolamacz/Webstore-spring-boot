@@ -2,6 +2,7 @@ package com.bs.boot.webstore.rest;
 
 import com.bs.boot.webstore.domain.Category;
 import com.bs.boot.webstore.domain.Product;
+import com.bs.boot.webstore.dto.ProductDTO;
 import com.bs.boot.webstore.services.CategoryService;
 import com.bs.boot.webstore.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,8 +44,8 @@ public class ProductController {
 //    }
 
     @GetMapping(value = "/getAllProducts")
-    public List<Product> getAllProducts(){
-        return productService.findAll();
+    public List<ProductDTO> getAllProducts(){
+        return productService.getProductsToDisplay();
     }
 
     @GetMapping(value = "/getByCategory/{categoryId}")
@@ -86,7 +87,8 @@ public class ProductController {
             System.out.println(multipartFile.getOriginalFilename());
 
             Path pathAndFilename = Paths.get(uploadPath, multipartFile.getOriginalFilename());
-            imgPaths.append(pathAndFilename.toString());
+            imgPaths.append(pathAndFilename.toString().replace("../frontend/src/",""));
+            imgPaths.append(",");
 
             try {
                 Files.write(pathAndFilename, multipartFile.getBytes());

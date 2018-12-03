@@ -1,8 +1,10 @@
 package com.bs.boot.webstore.services.Impl;
 
 import com.bs.boot.webstore.domain.CartItem;
+import com.bs.boot.webstore.domain.Product;
 import com.bs.boot.webstore.repository.CartItemRepository;
 import com.bs.boot.webstore.services.CartItemService;
+import com.bs.boot.webstore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,12 @@ import java.util.Optional;
 public class CartItemServiceImpl implements CartItemService{
 
     private CartItemRepository cartItemRepository;
+    private ProductService productService;
 
     @Autowired
-    public CartItemServiceImpl(CartItemRepository cartItemRepository) {
+    public CartItemServiceImpl(CartItemRepository cartItemRepository, ProductService productService) {
         this.cartItemRepository = cartItemRepository;
+        this.productService = productService;
     }
 
     @Override
@@ -28,6 +32,11 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     public CartItem save(CartItem cartItem) {
+
+        Product product2Update = productService.findById(cartItem.getProduct().getId()).get();
+        product2Update.setUnitsInStock(product2Update.getUnitsInStock() - cartItem.getQuantity());
+        productService.save(product2Update);
+
         return cartItemRepository.save(cartItem);
     }
 

@@ -10,7 +10,7 @@
 .settings
 .springBeans
 .sts4-cache
-
+/backend/uploads/
 ### IntelliJ IDEA ###
 .idea
 *.iws

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product, Category } from '../models';
+import { Product, Category, ProductDTO } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class ProductService {
 
   private api: string = "/api";
 
-  getAllProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(this.api+'/product/getAllProducts');
+  getAllProducts():Observable<ProductDTO[]>{
+    return this.http.get<ProductDTO[]>(this.api+'/product/getAllProducts');
   }
 
   getProductsByCategory(category: Category):Observable<Product[]>{
@@ -21,8 +21,19 @@ export class ProductService {
 
   }
 
-  addCategory(product: Product): Observable<Product>{
-    return this.http.post<Product>(this.api+'/product/addProduct',product);
+  addProduct(product: Product, files:File[], category: Category){
+    const formData: FormData = new FormData();
+    for(let file of files){
+      console.log(file);
+
+    formData.append('image', file, file.name);
+    }
+    formData.append('product', new Blob([JSON.stringify(product)], {type: "application/json"})) ;
+    formData.append('category', new Blob([JSON.stringify(category)], {type: "application/json"})) ;
+    console.log("FORM "+ formData);
+
+
+    return this.http.post(this.api+'/product/addProduct',formData );
 
   }
   deleteProduct(id: number){

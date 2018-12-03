@@ -2,6 +2,7 @@ package com.bs.boot.webstore.services.Impl;
 
 import com.bs.boot.webstore.domain.Category;
 import com.bs.boot.webstore.domain.Product;
+import com.bs.boot.webstore.dto.ProductDTO;
 import com.bs.boot.webstore.repository.ProductRepository;
 import com.bs.boot.webstore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProductDTO> getProductsToDisplay() {
+        return productRepository.getProductsToDisplay();
     }
 
     @Override

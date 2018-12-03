@@ -8,8 +8,8 @@ import { Category } from '../models';
 })
 export class CategoryService {
 
-  constructor(private http: HttpClient) { 
-    
+  constructor(private http: HttpClient) {
+
   }
   private api: string = '/api';
 
@@ -25,6 +25,10 @@ export class CategoryService {
 
   addCategory(category: Category):Observable<Category>{
     return this.http.post<Category>(this.api+'/category/addCategory',category);
+  }
+
+  getAll():Observable<Category[]>{
+    return this.http.get<Category[]>(this.api+'/category/getAll');
   }
 
 }
