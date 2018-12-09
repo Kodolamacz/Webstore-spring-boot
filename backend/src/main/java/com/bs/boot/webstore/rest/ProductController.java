@@ -8,6 +8,7 @@ import com.bs.boot.webstore.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,11 +45,15 @@ public class ProductController {
 //    }
 
     @GetMapping(value = "/getAllProducts")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     public List<ProductDTO> getAllProducts(){
         return productService.getProductsToDisplay();
     }
 
+
+
     @GetMapping(value = "/getByCategory/{categoryId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<Product> getByCategory(@PathVariable("categoryId") Long catId){
 
         Category category = categoryService.findById(catId).get();

@@ -15,6 +15,7 @@ public interface RoleRepository  extends JpaRepository<Role,Long>{
 
     Optional<Role> findById(Long id);
     Optional<Role> findByName(String name);
+    List<Role> findByUsers_Username(String username);
     List<Role> findAll();
     Role save(Role role);
     void deleteById(Long id);

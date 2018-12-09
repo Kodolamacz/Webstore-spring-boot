@@ -9,6 +9,7 @@ import com.bs.boot.webstore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -51,6 +52,12 @@ public class CartController {
         Cart cart = cartService.findById(id).get();
         cart.calculateTotalCost();
         return cart;
+    }
+
+    @GetMapping(value = "/getCartItems/{cartId}")
+    public List<CartItem> getCartItems(@PathVariable("cartId") Long cartId){
+
+        return cartItemService.findByCartId(cartId);
     }
 
 }

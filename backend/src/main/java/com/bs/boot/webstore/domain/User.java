@@ -4,6 +4,7 @@ import com.bs.boot.webstore.validators.IMatchingPassword;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -47,8 +48,17 @@ public class User {
             cascade = CascadeType.ALL
 
     )
+    @ToString.Exclude
     private Set<Role> roles;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ShoppingHistory shoppingHistory;
+
+    public void addRole(Role role){
+        if(roles == null){
+            roles = new HashSet<>();
+        }
+        roles.add(role);
+
+    }
 }

@@ -9,6 +9,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AllProductsComponent } from './all-products/all-products.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AllProductsComponent } from './all-products/all-products.component';
     ProductsComponent,
     AddCategoryComponent,
     WelcomePageComponent,
-    AllProductsComponent
+    AllProductsComponent,
+    UserRegistrationComponent,
+    LoginComponent
   ],
   imports: [
 

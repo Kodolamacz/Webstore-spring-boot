@@ -8,6 +8,7 @@ import com.bs.boot.webstore.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,5 +44,10 @@ public class CartItemServiceImpl implements CartItemService{
     @Override
     public void deleteById(Long id) {
         cartItemRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CartItem> findByCartId(Long id) {
+        return cartItemRepository.findByCart_Id(id);
     }
 }
